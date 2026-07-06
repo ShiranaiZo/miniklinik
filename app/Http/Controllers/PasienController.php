@@ -48,7 +48,7 @@ class PasienController extends Controller
     {
         $data = $request->validate([
             // BUG SENGAJA: tidak mengecualikan id saat update — seharusnya 'unique:pasien,no_rm,'.$pasien->id
-            'no_rm'         => 'required|unique:pasien,no_rm',
+            'no_rm'         => 'required|unique:pasien,no_rm,'.$pasien->id,
             'nama'          => 'required',
             'tgl_lahir'     => 'nullable|date',
             'jenis_kelamin' => 'nullable|in:L,P',
