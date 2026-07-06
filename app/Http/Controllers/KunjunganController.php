@@ -34,7 +34,7 @@ class KunjunganController extends Controller
      */
     public function store(Request $request)
     {
-         $data = $request->validate([
+        $data = $request->validate([
             'pasien_id' => 'required',
             'dokter_id' => 'required',
             'tanggal' => 'required|date',
@@ -54,22 +54,40 @@ class KunjunganController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kunjungan = Kunjungan::findOrFail($id);
+        $pasiens = Pasien::all();
+        $dokters = Dokter::all();
+
+        return view('kunjungan.edit', compact(['kunjungan', 'pasiens', 'dokters']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Kunjungan $kunjungan)
     {
-        //
+        $data = $request->validate([
+            'pasien_id' => 'required',
+            'dokter_id' => 'required',
+            'tanggal' => 'required|date',
+            'keluhan' => 'required|string',
+            'diagnosis' => 'required|max:255|string',
+            'biaya' => 'required|decimal:2',
+            'status' => 'required|max:255|string',
+        ]);
+
+        $kunjungan->update($data);
+
+        return redirect()->route('kunjungan.index')->with('ok', 'Data kunjungan diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Kunjungan $kunjungan)
     {
-        //
+        $kunjungan->delete();
+
+        return redirect()->route('kunjungan.index')->with('ok', 'Data kunjungan dihapus.');
     }
 }

@@ -68,7 +68,7 @@
 
 <div class="mb-3">
     <label class="form-label fw-semibold">Keluhan <span class="text-danger">*</span></label>
-    <textarea name="keluhan" class="form-control @error('keluhan') is-invalid @enderror" rows="2" placeholder="Keluhan">{{ old('keluhan', $pasien->keluhan ?? '') }}</textarea>
+    <textarea name="keluhan" class="form-control @error('keluhan') is-invalid @enderror" rows="2" placeholder="Keluhan">{{ old('keluhan', $kunjungan->keluhan ?? '') }}</textarea>
     @error('keluhan')
         <div class="invalid-feedback">{{ $message }}</div>
     @enderror
