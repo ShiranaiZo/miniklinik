@@ -18,6 +18,7 @@
         <a class="navbar-brand" href="{{ route('pasien.index') }}">&#x1F3E5; MiniKlinik</a>
         <div class="navbar-nav ms-auto">
             <a class="nav-link text-white" href="{{ route('pasien.index') }}">Data Pasien</a>
+            <a class="nav-link text-white" href="{{ route('kunjungan.index') }}">Data Kunjungan</a>
         </div>
     </div>
 </nav>
