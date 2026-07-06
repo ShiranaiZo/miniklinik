@@ -9,7 +9,16 @@ class KunjunganController extends Controller
 {
     public function index(int $pasienId)
     {
-        $pasien = Pasien::with('kunjungans')->findOrFail($pasienId);
-        return response()->json($pasien->kunjungans);
+        try {
+            $pasien = Pasien::with('kunjungans')->findOrFail($pasienId);
+            return response()->json($pasien->kunjungans);
+        } catch (\Throwable $th) {
+            $statusCode = 404;
+            return response()->json([
+                'success' => false,
+                'statusCode' => $statusCode,
+                'message' => "Pasien tidak dapat ditemukan"
+            ], $statusCode);
+        }
     }
 }
