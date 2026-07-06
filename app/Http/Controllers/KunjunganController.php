@@ -52,7 +52,7 @@ class KunjunganController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
         $kunjungan = Kunjungan::findOrFail($id);
         $pasiens = Pasien::all();
